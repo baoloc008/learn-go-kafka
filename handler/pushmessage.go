@@ -23,7 +23,7 @@ func PushMessage(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusUnprocessableEntity, fmt.Sprintf("error while marshalling json: %s", err.Error()))
 	}
-	err = kafka.Push(ctx, nil, formInBytes)
+	err = kafka.Write(ctx, nil, formInBytes)
 	if err != nil {
 		return c.String(http.StatusUnprocessableEntity, fmt.Sprintf("error while push message into kafka: %s", err.Error()))
 	}

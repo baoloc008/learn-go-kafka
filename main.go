@@ -21,7 +21,7 @@ var (
 func main() {
 
 	// connect to kafka
-	kafkaProducer, err := kafka.Configure(strings.Split(kafkaBrokerUrl, ","), kafkaClientId, kafkaTopic)
+	kafkaProducer, err := kafka.InitWriter(strings.Split(kafkaBrokerUrl, ","), kafkaClientId, kafkaTopic)
 	if err != nil {
 		log.Panic("Unable to configure kafka. ", "Error: ", err.Error())
 		return
