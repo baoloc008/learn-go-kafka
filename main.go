@@ -14,8 +14,8 @@ var (
 	listenAddr = ":9620"
 	// kafka
 	kafkaBrokerUrl = "localhost:19092,localhost:29092,localhost:39092"
-	kafkaClientId  = "my-kafka-client"
-	kafkaTopic     = "LocTopic"
+	kafkaClientId  = "demo-kafka-client"
+	kafkaTopic     = "DemoTopic"
 )
 
 func main() {
