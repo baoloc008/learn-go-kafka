@@ -12,14 +12,22 @@
 ```sh
 MY_IP=<IP> docker-compose up 
 ```
+
 #### Create topic
 ```sh
 docker run --net=host --rm confluentinc/cp-kafka kafka-topics --create --topic DemoTopic --partitions 3 --replication-factor 2 --if-not-exists --zookeeper localhost:32181
 ```
+
+#### Delete topic
+```sh
+docker run --net=host --rm confluentinc/cp-kafka kafka-topics --delete --topic DemoTopic --zookeeper localhost:32181
+```
+
 #### Listen "DemoTopic" in partition 2
 ```sh
 kafkacat -C -b localhost:19092,localhost:29092,localhost:39092 -t DemoTopic -p 2
 ```
+
 #### Publish message to "DemoTopic" partition 2
 ```sh
 echo 'Test call api' | kafkacat -P -b localhost:19092,localhost:29092,localhost:39092 -t DemoTopic -p 2

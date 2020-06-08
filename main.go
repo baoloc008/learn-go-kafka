@@ -23,10 +23,16 @@ func main() {
 	// connect to kafka
 	kafkaProducer, err := kafka.InitWriter(strings.Split(kafkaBrokerUrl, ","), kafkaClientId, kafkaTopic)
 	if err != nil {
-		log.Panic("Unable to configure kafka. ", "Error: ", err.Error())
+		log.Panic("Unable to init kafka writer. ", "Error: ", err.Error())
 		return
 	}
 	defer kafkaProducer.Close()
+	kafkaConsumer, err := kafka.InitReader(strings.Split(kafkaBrokerUrl, ","), kafkaClientId, kafkaTopic)
+	if err != nil {
+		log.Panic("Unable to init kafka reader. ", "Error: ", err.Error())
+		return
+	}
+	defer kafkaConsumer.Close()
 
 	r := echo.New()
 	r.Use(middleware.Logger())

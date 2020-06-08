@@ -17,7 +17,7 @@ func InitWriter(kafkaBrokerUrls []string, clientId string, topic string) (w *kaf
 	config := kafka.WriterConfig{
 		Brokers:          kafkaBrokerUrls,
 		Topic:            topic,
-		Balancer:         &kafka.LeastBytes{},
+		Balancer:         &kafka.RoundRobin{},
 		Dialer:           dialer,
 		WriteTimeout:     10 * time.Second,
 		ReadTimeout:      10 * time.Second,
